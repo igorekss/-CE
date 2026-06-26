@@ -1,0 +1,223 @@
+2 блок тильда
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Igor — About</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Science+Gothic:wght@400..900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0A0B0D;
+    --panel:#13161B;
+    --panel-2:#191D24;
+    --line:#262B33;
+    --text:#F4F6F9;
+    --muted:#8C95A3;
+    --blue:#20B5FF;
+    --blue-dim:rgba(32,181,255,.12);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Science Gothic','Inter',sans-serif;
+    font-weight:800;
+    letter-spacing:-0.01em;
+    margin:0;
+  }
+  a{color:inherit !important; text-decoration:none !important;}
+  .wrap{max-width:1200px; margin:0 auto; padding:0 32px;}
+  section{padding:15px 0 40px 0; scroll-margin-top:15px;} /* Максимально уменьшен верхний отступ секции */
+  .eyebrow{
+    font-family:'Inter',sans-serif;
+    font-size:.78rem;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--blue);
+    font-weight:600;
+    margin-bottom:14px;
+    display:block;
+  }
+  
+  /* ---------- NAV ---------- */
+  nav{
+    display:none;
+  }
+  
+  /* ---------- SECTION HEADERS ---------- */
+  .sec-head{margin-bottom:42px;}
+  .sec-head h2{font-size:clamp(1.7rem,3vw,2.3rem);}
+  
+  /* ---------- ABOUT ---------- */
+  .about-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+    align-items:start;
+  }
+  .about-grid p{color:var(--muted); line-height:1.75; font-size:1rem;}
+  .info-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:20px 22px;
+    margin-bottom:14px;
+    transition:border-color .3s ease, transform .3s ease, box-shadow .3s ease;
+  }
+  .info-card:hover{
+    border-color:var(--blue);
+    transform:translateY(-4px);
+    box-shadow:0 10px 26px rgba(32,181,255,.18);
+  }
+  .info-card .tag{font-size:.72rem; text-transform:uppercase; letter-spacing:.08em; color:var(--blue); font-weight:600;}
+  .info-card .val{font-size:1.02rem; font-weight:600; margin-top:6px;}
+  
+  /* ---------- PATH A->B ---------- */
+  .path-row{
+    display:flex; align-items:center; gap:24px;
+    flex-wrap:wrap;
+    margin-top:10px;
+  }
+  .path-pill{
+    flex:1; min-width:220px;
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:22px;
+    transition:border-color .3s ease, transform .3s ease, box-shadow .3s ease;
+  }
+  .path-pill:hover{
+    border-color:var(--blue);
+    transform:translateY(-4px);
+    box-shadow:0 10px 26px rgba(32,181,255,.18);
+  }
+  .path-pill .pt{font-size:.72rem; color:var(--blue); text-transform:uppercase; letter-spacing:.1em; font-weight:700;}
+  .path-pill p{color:var(--text); margin-top:10px; font-size:.96rem; line-height:1.55;}
+  .path-arrow{font-size:1.8rem; color:var(--blue); flex-shrink:0;}
+  
+  /* ---------- MENTOR ---------- */
+  .mentor-card{
+    display:flex; gap:28px;
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:28px;
+    align-items:center;
+    flex-wrap:wrap;
+  }
+  .mentor-photo{
+    width:140px; height:140px;
+    border-radius:50%;
+    object-fit:cover;
+    border:3px solid var(--blue);
+    flex-shrink:0;
+  }
+  .mentor-card h3{font-size:1.25rem;}
+  .mentor-card .role{color:var(--blue); font-size:.82rem; text-transform:uppercase; letter-spacing:.08em; font-weight:700; margin:4px 0 12px;}
+  .mentor-card p{color:var(--muted); line-height:1.7; font-size:.96rem; max-width:60ch;}
+  
+  /* ---------- HOBBIES ---------- */
+  .hobby-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+  }
+  .hobby-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:22px;
+    text-align:center;
+    transition:border-color .3s ease, transform .3s ease, box-shadow .3s ease;
+  }
+  .hobby-card:hover{
+    border-color:var(--blue);
+    transform:translateY(-6px) scale(1.03);
+    box-shadow:0 10px 26px rgba(32,181,255,.2);
+  }
+  .hobby-card .ico{font-size:1.8rem; margin-bottom:10px;}
+  .hobby-card h4{font-family:'Inter'; font-weight:600; font-size:.95rem; margin:0;}
+  
+  /* ---------- PROJECTS ---------- */
+  .works-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+  }
+  .work-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:24px;
+    transition:transform .25s ease, border-color .25s ease;
+  }
+  .work-card:hover{transform:translateY(-5px); border-color:var(--blue);}
+  .work-card .num{color:var(--blue); font-family:'Science Gothic'; font-weight:800; font-size:1.2rem;}
+  .work-card h4{margin-top:10px; font-size:1.05rem;}
+  .work-card p{color:var(--muted); font-size:.88rem; margin-top:6px; line-height:1.5;}
+  
+  /* ---------- CONTACT / GITHUB ---------- */
+  .contact-box{
+    background:linear-gradient(135deg, var(--panel), var(--panel-2));
+    border:1px solid var(--line);
+    border-radius:20px;
+    padding:48px;
+    text-align:center;
+  }
+  .contact-box h2{font-size:clamp(1.6rem,3vw,2.1rem);}
+  .contact-box p{color:var(--muted); margin-top:10px;}
+  
+  @media(max-width:860px){
+    .about-grid{grid-template-columns:1fr;}
+    .hobby-grid{grid-template-columns:1fr 1fr;}
+    .works-grid{grid-template-columns:1fr;}
+  }
+  @media(max-width:500px){
+    .hobby-grid{grid-template-columns:1fr;}
+    section{padding:15px 0 30px 0;}
+    .wrap{padding:0 20px;}
+  }
+</style>
+</head>
+<body>
+
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">About</span>
+      <h2>About me</h2>
+    </div>
+    <div class="about-grid">
+      <p>
+        I am also actively learning HTML and expanding my web development skills, which helps me better understand the connection between design and code. My goal is to create high-quality digital products that not only look great but also provide an excellent user experience.
+        <br><br>
+        I am always eager to learn new technologies, improve my skills, and take on exciting projects that help businesses grow and stand out online.
+      </p>
+      <div>
+        <div class="info-card">
+          <div class="tag">📍 My Location</div>
+          <div class="val">Kazakhstan, Uralsk</div>
+        </div>
+        <div class="info-card">
+          <div class="tag">My Goal</div>
+          <div class="val">Become a confident web designer & developer, building products that look great and work well.</div>
+        </div>
+        <div class="info-card">
+          <div class="tag">Currently learning</div>
+          <div class="val">HTML, CSS, and front-end fundamentals — alongside Figma design work.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+</body>
+</html>
